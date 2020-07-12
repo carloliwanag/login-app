@@ -51,6 +51,7 @@ export class LoginPage implements OnInit {
           if (response && response.status) {
             message = response.data.token;
             routeTo = 'dashboard';
+            this.usersSvc.isLoggedIn = true;
           }
 
           this.alertCtrl
