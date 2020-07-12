@@ -1,3 +1,5 @@
+// reference: https://medium.com/@stopchemtrailsfred/mocking-backend-with-angular-in-memory-api-c238b73ddb98
+
 import { Injectable } from '@angular/core';
 
 import { RequestInfo } from 'angular-in-memory-web-api/interfaces';
@@ -37,7 +39,10 @@ export class InMemoryDataService {
       const { headers, url, req } = reqInfo;
 
       const { username, password } = req['body'];
-      if (username === 'carlo' && password === '1234')
+      if (
+        (username === 'bmtest@biomarking.com' && password === '1qw21qw2') ||
+        (username === 'carlo' && password === '1234')
+      )
         return {
           status: 200,
           headers,
