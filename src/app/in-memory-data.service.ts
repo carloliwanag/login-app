@@ -15,13 +15,13 @@ export class InMemoryDataService {
       { id: 2, username: 'john69', password: 'abcd' },
     ];
 
-    return users;
+    const authentication = [];
+
+    return { users, authentication };
   }
 
   // HTTP POST interceptor
   post(reqInfo: RequestInfo) {
-    // if client pinged api/authentication
-    //  then call authenticate (defined below)
     if (reqInfo.collectionName === 'authentication')
       return this.authenticate(reqInfo);
 
@@ -34,17 +34,14 @@ export class InMemoryDataService {
   private authenticate(reqInfo: RequestInfo) {
     // return an Observable response
     return reqInfo.utils.createResponse$(() => {
-
       const { headers, url, req } = reqInfo;
 
-      // if request username and passord are correct
-      //  return response with a JSONWebToken
       const { username, password } = req['body'];
-      if (username === 'fred92' && password === '1234')
+      if (username === 'carlo' && password === '1234')
         return {
           status: 200,
-          headers, // reqInfo (line 30)
-          url, // reqInfo (line 30)
+          headers,
+          url,
           body: {
             status: true,
             data: {
@@ -53,7 +50,6 @@ export class InMemoryDataService {
           },
         };
 
-      //  otherwise return response with status code 401 (unauthorized)
       return {
         status: 401,
         headers,

@@ -5,12 +5,12 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class UsersService {
-  SERVER_URL: string = 'http://localhost:8080/api/';
+  SERVER_URL: string = 'api';
 
   constructor(private http: HttpClient) {}
 
   login(username: string, password: string) {
-    return this.http.post(`${this.SERVER_URL}/authentication`, {
+    return this.http.post(`${this.SERVER_URL}/authentication/`, {
       username,
       password,
     });
